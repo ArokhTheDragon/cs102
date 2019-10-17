@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
-def encrypt_caesar(plaintext):
+def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     """
+    Encrypts plaintext using a Caesar cipher.
     >>> encrypt_caesar("PYTHON")
     'SBWKRQ'
     >>> encrypt_caesar("python")
@@ -11,21 +11,23 @@ def encrypt_caesar(plaintext):
     ''
     """
     ciphertext = ''
+
     for char in plaintext:
-        if 'a' <= char <= 'z':
-            new_char = chr(ord(char) % ord('a') + 3) % 26 + ord('a')
+        if char.islower():
+            new_char = chr(ord('a') + (ord(char) - ord('a') + (shift % 26)) % 26)
             ciphertext += new_char
-        elif 'A' <= char <= 'Z':
-            new_char = chr(ord(char) % ord('A') + 3) % 26 + ord('A')
+        elif char.isupper():
+            new_char = chr(ord('A') + (ord(char) - ord('A') + (shift % 26)) % 26)
             ciphertext += new_char
         else:
-            new_char = char
-            ciphertext += new_char
+            ciphertext += char
+
     return ciphertext
 
 
-def decrypt_caesar(plaintext):
+def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     """
+    Decrypts a ciphertext using a Caesar cipher.
     >>> decrypt_caesar("SBWKRQ")
     'PYTHON'
     >>> decrypt_caesar("sbwkrq")
@@ -35,15 +37,16 @@ def decrypt_caesar(plaintext):
     >>> decrypt_caesar("")
     ''
     """
-    plaintext = ""
+    plaintext = ''
+
     for char in ciphertext:
-        if 'a' <= char <= 'z':
-            new_char = chr(ord(char) % ord('a') - 3) % 26 - ord('a')
+        if char.islower():
+            new_char = chr(ord('a') + (ord(char) - ord('a') - (shift % 26)) % 26)
             plaintext += new_char
-        elif 'A' <= char <= 'Z':
-            new_char = chr(ord(char) % ord('A') - 3) % 26 - ord('A')
-            laintext += new_char
+        elif char.isupper():
+           new_char = chr(ord('A') + (ord(char) - ord('A') - (shift % 26)) % 26)
+           plaintext += new_char
         else:
-            new_char = char
-            laintext += new_char
+            plaintext += char
+
     return plaintext
