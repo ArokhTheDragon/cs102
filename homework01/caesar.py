@@ -10,16 +10,18 @@ def encrypt_caesar(plaintext):
     >>> encrypt_caesar("")
     ''
     """
-    new_data = []
+    ciphertext = ''
     for char in plaintext:
         if 'a' <= char <= 'z':
-            new_char = (ord(char) % ord('a') + 3) % 26 + ord('a')
+            new_char = chr(ord(char) % ord('a') + 3) % 26 + ord('a')
+            ciphertext += new_char
         elif 'A' <= char <= 'Z':
-            new_char = (ord(char) % ord('A') + 3) % 26 + ord('A')
+            new_char = chr(ord(char) % ord('A') + 3) % 26 + ord('A')
+            ciphertext += new_char
         else:
             new_char = char
-        new_data.append(new_char)
-    return "".join(new_data)
+            ciphertext += new_char
+    return ciphertext
 
 
 def decrypt_caesar(plaintext):
@@ -33,13 +35,15 @@ def decrypt_caesar(plaintext):
     >>> decrypt_caesar("")
     ''
     """
-    new_data = []
-    for char in plaintext:
+    plaintext = ""
+    for char in ciphertext:
         if 'a' <= char <= 'z':
-            new_char = (ord(char) % ord('a') - 3) % 26 - ord('a')
+            new_char = chr(ord(char) % ord('a') - 3) % 26 - ord('a')
+            plaintext += new_char
         elif 'A' <= char <= 'Z':
-            new_char = (ord(char) % ord('A') - 3) % 26 - ord('A')
+            new_char = chr(ord(char) % ord('A') - 3) % 26 - ord('A')
+            laintext += new_char
         else:
             new_char = char
-        new_data.append(new_char)
-    return "".join(new_data)
+            laintext += new_char
+    return plaintext
