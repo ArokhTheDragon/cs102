@@ -1,1 +1,1 @@
-Hello world! BLABLABLA
+Бондаренко Глеб, К3143
